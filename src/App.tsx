@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 
-import Timeline, { TimelineItem } from "react-calendar-timeline";
+import Timeline, { TimelineItem, TimelineGroup } from "react-calendar-timeline";
 // make sure you include the timeline stylesheet or the timeline will not be styled
 import "react-calendar-timeline/lib/Timeline.css";
 import moment, { Moment } from "moment";
@@ -23,27 +23,31 @@ const createOrderIdNumberFromIdString = (orderId: string) => {
 
 export { createOrderIdNumberFromIdString };
 
+const trucksExampleArray: Truck[] = [
+  {
+    name: "truck1",
+    assignedOrderId: ["order1", "order2"]
+  }
+];
+
+const ordersExampleArray = [
+  {
+    id: "order1",
+    start_time: moment("2020.02.01 14:00:00"),
+    end_time: moment("2020.02.01 18:00:00")
+  },
+
+  {
+    id: "order2",
+    start_time: moment("2020.02.02 06:00:00"),
+    end_time: moment("2020.02.02 12:00:00")
+  }
+];
+
 export default function App() {
-  const trucks: Truck[] = [
-    {
-      name: "truck1",
-      assignedOrderId: ["order1", "order2"]
-    }
-  ];
-
-  const orders = [
-    {
-      id: "order1",
-      start_time: moment("2020.02.01 14:00:00"),
-      end_time: moment("2020.02.01 18:00:00")
-    },
-
-    {
-      id: "order2",
-      start_time: moment("2020.02.02 06:00:00"),
-      end_time: moment("2020.02.02 12:00:00")
-    }
-  ];
+  const [trucks, updateTrucks] = React.useState(trucksExampleArray);
+  const [orders, updateOrders] = React.useState(ordersExampleArray);
+  const [groups, updateGroups] = React.useState(new Array<TimelineGroup>());
 
   const convertTrucksToTimelineGroups = (trucks: Truck[]) => {
     return trucks.map((truck, index = 1) => ({
