@@ -11,8 +11,9 @@ export default class JsonDataProviderComponent
     return fetch(
       "https://nexogenshares.blob.core.windows.net/recruitment/trucktimeline.json",
       {
+        method: "GET",
         mode: "no-cors"
       }
-    );
+    ).then(res => res.json());
   };
 }
