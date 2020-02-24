@@ -2,8 +2,6 @@ import DataConvertHelper from "./DataConvertHelper";
 import { Truck, Order } from "./Types";
 import moment from "moment";
 
-const dataConvertHelper = new DataConvertHelper();
-
 // test data
 const trucksExampleArray: Truck[] = [
   {
@@ -29,7 +27,7 @@ const ordersExampleArray: Order[] = [
 describe("_createOrderIdNumberFromIdString", () => {
   it("should get and convert the number part from the end of the 'id' string", () => {
     // while this shows an error in CSb, this actually works
-    const result = dataConvertHelper["_createOrderIdNumberFromIdString"](
+    const result = DataConvertHelper["_createOrderIdNumberFromIdString"](
       "order13"
     );
 
@@ -43,7 +41,7 @@ describe("_createOrderIdNumberFromIdString", () => {
 
 describe("convertTrucksToTimelineGroups", () => {
   it("should return the TimelineGroup array correctly", () => {
-    const result = dataConvertHelper.convertTrucksToTimelineGroups(
+    const result = DataConvertHelper.convertTrucksToTimelineGroups(
       trucksExampleArray
     );
     const expectedResult = [
@@ -59,7 +57,7 @@ describe("convertTrucksToTimelineGroups", () => {
 
 describe("_mapTruckIdsToOrderIds", () => {
   it("should map the right truck ids to the order ids", () => {
-    const result = dataConvertHelper["_mapTruckIdsToOrderIds"](
+    const result = DataConvertHelper["_mapTruckIdsToOrderIds"](
       trucksExampleArray
     );
 
@@ -74,7 +72,7 @@ describe("_mapTruckIdsToOrderIds", () => {
 
 describe("convertOrdersToTimelineItems", () => {
   it("should return the TimelineItem array correctly", () => {
-    const result = dataConvertHelper.convertOrdersToTimelineItems(
+    const result = DataConvertHelper.convertOrdersToTimelineItems(
       ordersExampleArray,
       trucksExampleArray
     );

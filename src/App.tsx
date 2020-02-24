@@ -5,7 +5,6 @@ import "./styles.css";
 import "react-calendar-timeline/lib/Timeline.css";
 import TimelineRenderer from "./TimelineRenderer";
 import TestDataComponent from "./TestDataComponent";
-import DataConvertHelper from "./DataConvertHelper";
 
 const createOrderIdNumberFromIdString = (orderId: string) => {
   return parseInt(orderId.match(/\d+/)[0], 10);
@@ -14,13 +13,8 @@ const createOrderIdNumberFromIdString = (orderId: string) => {
 export { createOrderIdNumberFromIdString };
 
 export default function App() {
-  const dataConvertHelper = new DataConvertHelper();
-  const testDataComponent = new TestDataComponent(dataConvertHelper);
+  // inject the data component here that will serve data
+  const dataComponent = new TestDataComponent();
 
-  return (
-    <TimelineRenderer
-      dataComponent={testDataComponent}
-      dataConvertHelper={dataConvertHelper}
-    />
-  );
+  return <TimelineRenderer dataComponent={dataComponent} />;
 }

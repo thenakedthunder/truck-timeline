@@ -1,14 +1,12 @@
-import DataComponentInterface from "./DataComponentInterface";
+import DataComponentInterface from "./Types";
 import React from "react";
 import moment from "moment";
 import Timeline from "react-calendar-timeline";
 // make sure you include the timeline stylesheet or the timeline will not be styled
 import "react-calendar-timeline/lib/Timeline.css";
-import DataConvertHelper from "./DataConvertHelper";
 
 type TimelineRendererProps = {
   dataComponent: DataComponentInterface;
-  dataConvertHelper: DataConvertHelper;
 };
 
 export default function TimelineRenderer(props: TimelineRendererProps) {

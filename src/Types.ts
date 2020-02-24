@@ -1,4 +1,5 @@
 import { Moment } from "moment";
+import { TimelineItem, TimelineGroup } from "react-calendar-timeline";
 
 export type Truck = {
   name: string;
@@ -10,6 +11,11 @@ export type Order = {
   start_time: Moment;
   end_time: Moment;
 };
+
+export interface DataComponentInterface {
+  getGroups: () => TimelineGroup[];
+  getItems: () => TimelineItem[];
+}
 
 // export interface TimelineGroup {
 //   id: number;

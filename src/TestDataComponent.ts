@@ -4,19 +4,14 @@ import moment from "moment";
 import DataConvertHelper from "./DataConvertHelper";
 
 export default class TestDataComponent implements DataComponentInterface {
-  dataConvertHelper: DataConvertHelper;
-  constructor(convertHelper: DataConvertHelper) {
-    this.dataConvertHelper = convertHelper;
-  }
-
-  trucksExampleArray: Truck[] = [
+  private trucksExampleArray: Truck[] = [
     {
       name: "truck1",
       assignedOrderId: ["order1", "order2"]
     }
   ];
 
-  ordersExampleArray: Order[] = [
+  private ordersExampleArray: Order[] = [
     {
       id: "order1",
       start_time: moment("2020.02.01 14:00:00"),
@@ -31,12 +26,10 @@ export default class TestDataComponent implements DataComponentInterface {
   ];
 
   getGroups = () =>
-    this.dataConvertHelper.convertTrucksToTimelineGroups(
-      this.trucksExampleArray
-    );
+    DataConvertHelper.convertTrucksToTimelineGroups(this.trucksExampleArray);
 
   getItems = () =>
-    this.dataConvertHelper.convertOrdersToTimelineItems(
+    DataConvertHelper.convertOrdersToTimelineItems(
       this.ordersExampleArray,
       this.trucksExampleArray
     );

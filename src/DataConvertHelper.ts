@@ -2,14 +2,14 @@ import { Truck, Order } from "./Types";
 import { TimelineGroup, TimelineItem } from "react-calendar-timeline";
 
 export default class DataConvertHelper {
-  convertTrucksToTimelineGroups(trucks: Truck[]): TimelineGroup[] {
+  static convertTrucksToTimelineGroups(trucks: Truck[]): TimelineGroup[] {
     return trucks.map((truck, index) => ({
       id: index + 1,
       title: truck.name
     }));
   }
 
-  convertOrdersToTimelineItems(
+  static convertOrdersToTimelineItems(
     orders: Order[],
     trucks: Truck[]
   ): TimelineItem[] {
@@ -24,11 +24,11 @@ export default class DataConvertHelper {
     }));
   }
 
-  private _createOrderIdNumberFromIdString = (orderId: string) => {
+  private static _createOrderIdNumberFromIdString = (orderId: string) => {
     return parseInt(orderId.match(/\d+/)[0], 10);
   };
 
-  private _mapTruckIdsToOrderIds(trucks: Truck[]) {
+  private static _mapTruckIdsToOrderIds(trucks: Truck[]) {
     const hash = {};
     trucks.forEach(truck => {
       truck.assignedOrderId.forEach(id => {
