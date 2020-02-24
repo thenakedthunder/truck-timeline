@@ -15,6 +15,7 @@ export type Order = {
 export interface DataComponentInterface {
   getGroups: () => TimelineGroup[];
   getItems: () => TimelineItem[];
+  isDataLoaded: boolean;
 }
 
 // export interface TimelineGroup {

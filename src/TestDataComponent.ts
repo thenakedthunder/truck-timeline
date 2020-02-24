@@ -1,9 +1,10 @@
-import DataComponentInterface from "./DataComponentInterface";
-import { Truck, Order } from "./Types";
+import { Truck, Order, DataComponentInterface } from "./Types";
 import moment from "moment";
 import DataConvertHelper from "./DataConvertHelper";
 
 export default class TestDataComponent implements DataComponentInterface {
+  isDataLoaded: boolean = true;
+
   private trucksExampleArray: Truck[] = [
     {
       name: "truck1",
