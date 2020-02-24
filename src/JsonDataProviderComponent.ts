@@ -14,6 +14,6 @@ export default class JsonDataProviderComponent
         method: "GET",
         mode: "no-cors"
       }
-    ).then(res => res.json());
+    );
   };
 }
