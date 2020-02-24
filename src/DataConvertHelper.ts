@@ -1,5 +1,6 @@
 import { Truck, Order } from "./Types";
 import { TimelineGroup, TimelineItem } from "react-calendar-timeline";
+import moment from "moment";
 
 export default class DataConvertHelper {
   static convertTrucksToTimelineGroups(trucks: Truck[]): TimelineGroup[] {
@@ -19,8 +20,8 @@ export default class DataConvertHelper {
       id: this._createOrderIdNumberFromIdString(order.id),
       group: hash[order.id],
       title: order.id,
-      start_time: order.start_time,
-      end_time: order.end_time
+      start_time: moment(order.from),
+      end_time: moment(order.to)
     }));
   }
 

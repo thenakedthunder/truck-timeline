@@ -1,6 +1,3 @@
-import { Moment } from "moment";
-import { TimelineItem, TimelineGroup } from "react-calendar-timeline";
-
 export type Truck = {
   name: string;
   assignedOrderId: string[];
@@ -8,31 +5,15 @@ export type Truck = {
 
 export type Order = {
   id: string;
-  start_time: Moment;
-  end_time: Moment;
+  from: string;
+  to: string;
+};
+
+export type ApiData = {
+  trucks: Truck[];
+  orders: Order[];
 };
 
 export interface DataComponentInterface {
-  getGroups: () => TimelineGroup[];
-  getItems: () => TimelineItem[];
-  isDataLoaded: boolean;
+  getData: () => Promise<ApiData>;
 }
-
-// export interface TimelineGroup {
-//   id: number;
-//   title: React.ReactNode;
-//   rightTitle?: React.ReactNode;
-// }
-
-// export interface TimelineItem {
-//   id: number;
-//   group: number;
-//   title?: React.ReactNode;
-//   start_time: any;
-//   end_time: any;
-//   canMove?: boolean;
-//   canResize?: boolean | "left" | "right" | "both";
-//   canChangeGroup?: boolean;
-//   className?: string;
-//   itemProps?: {};
-// }

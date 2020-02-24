@@ -13,14 +13,14 @@ const trucksExampleArray: Truck[] = [
 const ordersExampleArray: Order[] = [
   {
     id: "order1",
-    start_time: moment("2020.02.01 14:00:00"),
-    end_time: moment("2020.02.01 18:00:00")
+    from: "2020.02.01 14:00:00",
+    to: "2020.02.01 18:00:00"
   },
 
   {
     id: "order2",
-    start_time: moment("2020.02.02 06:00:00"),
-    end_time: moment("2020.02.02 12:00:00")
+    from: "2020.02.02 06:00:00",
+    to: "2020.02.02 12:00:00"
   }
 ];
 
