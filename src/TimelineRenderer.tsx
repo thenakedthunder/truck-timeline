@@ -23,7 +23,7 @@ export default function TimelineRenderer(props: TimelineRendererProps) {
         setIsLoading(false);
       })
       .catch(error => console.log(error));
-  }, []);
+  }, [props.dataComponent]);
 
   return isLoading ? (
     "Loading Data..."

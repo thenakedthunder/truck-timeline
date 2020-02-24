@@ -15,8 +15,8 @@ export { createOrderIdNumberFromIdString };
 
 export default function App() {
   // inject the data component here that will serve data
-  const dataComponent = new TestDataComponent();
-  // const dataComponent = new JsonDataProviderComponent();
+  // const dataComponent = new TestDataComponent();
+  const dataComponent = new JsonDataProviderComponent();
 
   return <TimelineRenderer dataComponent={dataComponent} />;
 }

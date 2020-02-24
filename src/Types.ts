@@ -15,5 +15,5 @@ export type ApiData = {
 };
 
 export interface DataComponentInterface {
-  getData: () => Promise<ApiData>;
+  getData: () => Promise<any>;
 }

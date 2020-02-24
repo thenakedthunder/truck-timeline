@@ -7,29 +7,12 @@ export default class JsonDataProviderComponent
   private ordersArray: Order[];
   isDataLoaded: boolean = false;
 
-  constructor() {
-    this.createArraysFromJson();
-  }
-
-  createArraysFromJson = async () => {
-    const response = await fetch(
-      "https://nexogenshares.blob.core.windows.net/recruitment/trucktimeline.json"
+  getData = () => {
+    return fetch(
+      "https://nexogenshares.blob.core.windows.net/recruitment/trucktimeline.json",
+      {
+        mode: "no-cors"
+      }
     );
-
-    await response.json().then(json => {
-      const result = JSON.parse(json);
-      this.trucksArray = result.trucks;
-      this.ordersArray = result.orders;
-      this.isDataLoaded = true;
-    });
   };
-
-  getGroups = () =>
-    DataConvertHelper.convertTrucksToTimelineGroups(this.trucksArray);
-
-  getItems = () =>
-    DataConvertHelper.convertOrdersToTimelineItems(
-      this.ordersArray,
-      this.trucksArray
-    );
 }
