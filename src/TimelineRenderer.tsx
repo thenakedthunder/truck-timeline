@@ -1,7 +1,7 @@
-import { DataComponentInterface, ApiData, Truck } from "./Types";
+import { DataComponentInterface } from "./Types";
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import Timeline from "react-calendar-timeline";
+import { Timeline, TimelineGroup, TimelineItem } from "react-calendar-timeline";
 // make sure you include the timeline stylesheet or the timeline will not be styled
 import "react-calendar-timeline/lib/Timeline.css";
 import DataConvertHelper from "./DataConvertHelper";
@@ -12,8 +12,8 @@ type TimelineRendererProps = {
 };
 
 export default function TimelineRenderer(props: TimelineRendererProps) {
-  const [groups, setGroups] = useState([]);
-  const [items, setItems] = useState([]);
+  const [groups, setGroups]: TimelineGroup[] = useState([]);
+  const [items, setItems]: TimelineItem[] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -38,7 +38,9 @@ export default function TimelineRenderer(props: TimelineRendererProps) {
     "Loading Data..."
   ) : (
     <div>
-      <FilterBox />
+      <FilterBox
+        truckNames={groups.map((group: TimelineGroup) => group.title)}
+      />
       <Timeline
         groups={groups}
         items={items}

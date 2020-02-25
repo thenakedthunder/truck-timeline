@@ -1,3 +1,4 @@
+import React from "react";
 import { Dropdown } from "semantic-ui-react";
 
 export default function FilterBox(this: any) {
@@ -6,12 +7,12 @@ export default function FilterBox(this: any) {
   };
 
   return (
-    <DropDown
+    <Dropdown
       placeholder="Select Country"
       fluid
       search
       selection
-      options={countryOptions}
+      options={this.props.truckNames}
     />
   );
 }
