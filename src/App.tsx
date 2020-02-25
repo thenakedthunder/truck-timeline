@@ -18,9 +18,5 @@ export default function App() {
   // const dataComponent = new TestDataComponent();
   const dataComponent = new JsonDataProviderComponent();
 
-  return (
-    <div>
-      <TimelineRenderer dataComponent={dataComponent} />
-    </div>
-  );
+  return <TimelineRenderer dataComponent={dataComponent} />;
 }

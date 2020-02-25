@@ -1,9 +1,17 @@
-import DropDownInput from "react-dropdown-input";
+import { Dropdown } from "semantic-ui-react";
 
-export default function FilterBox() {
+export default function FilterBox(this: any) {
   type FilterBoxProps = {
     truckNames: string[];
   };
 
-  return <DropDownInput options={this.props.truckNames} />;
+  return (
+    <DropDown
+      placeholder="Select Country"
+      fluid
+      search
+      selection
+      options={countryOptions}
+    />
+  );
 }
