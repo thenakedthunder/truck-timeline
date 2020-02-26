@@ -4,34 +4,23 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 
 type FilterBoxProps = {
   truckNames: string[];
-  onInputChange: (
-    event: ChangeEvent<{}>,
-    selected: string,
-    reason: "input" | "reset" | "clear"
-  ) => void;
-};
-
-const [selected, updateSelected] = useState([]);
-
-const handleInputChange: (
-  event: ChangeEvent<{}>,
-  selected: string,
-  reason: "input" | "reset" | "clear"
-) => {
-  updateSelected(selected);
+  onInputChange: (event: ChangeEvent<{}>, selected: string[]) => void;
+  selectedGroups: string[];
 };
 
 export default function FilterBox(props: FilterBoxProps) {
+  const [selectedValues, updateSelectedValues] = useState(props.selectedGroups);
+
   return (
     <Autocomplete
       multiple={true}
-      value={selected}
+      value={props.selectedGroups}
       id="combo-box-demo"
       options={props.truckNames}
       getOptionLabel={option => option}
       filterSelectedOptions
       style={{ width: 300 }}
-      onInputChange={handleInputChange}
+      onChange={props.onInputChange}
       renderInput={params => (
         <TextField
           {...params}

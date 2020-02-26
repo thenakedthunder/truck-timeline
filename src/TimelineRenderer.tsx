@@ -15,7 +15,9 @@ export default function TimelineRenderer(props: TimelineRendererProps) {
   const [groups, setGroups]: TimelineGroup[] = useState([]);
   const [items, setItems]: TimelineItem[] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedGroups, updateSelectedGroups] = useState([]);
+  const [selectedGroups, updateSelectedGroups]: string[] = useState(
+    groups.map((group: TimelineGroup) => group.title)
+  );
 
   useEffect(() => {
     props.dataComponent
@@ -50,9 +52,10 @@ export default function TimelineRenderer(props: TimelineRendererProps) {
       <FilterBox
         truckNames={groups.map((group: TimelineGroup) => group.title)}
         onInputChange={handleInputChange}
+        selectedGroups={selectedGroups}
       />
       <Timeline
-        groups={selectedGroups}
+        groups={groups}
         items={items}
         defaultTimeStart={moment("2020.02.01 0:00:00")}
         defaultTimeEnd={moment("2020.02.03 0:00:00")}
