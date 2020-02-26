@@ -9,8 +9,6 @@ type FilterBoxProps = {
 };
 
 export default function FilterBox(props: FilterBoxProps) {
-  const [selectedValues, updateSelectedValues] = useState(props.selectedGroups);
-
   return (
     <Autocomplete
       multiple={true}

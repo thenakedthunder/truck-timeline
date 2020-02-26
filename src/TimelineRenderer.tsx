@@ -18,6 +18,7 @@ export default function TimelineRenderer(props: TimelineRendererProps) {
   const [selectedGroups, updateSelectedGroups]: string[] = useState(
     groups.map((group: TimelineGroup) => group.title)
   );
+  // const [groupsToShow, updateGroupsToShow]: TimelineGroup[] = useState(groups)
 
   useEffect(() => {
     props.dataComponent
@@ -37,12 +38,11 @@ export default function TimelineRenderer(props: TimelineRendererProps) {
       .catch(error => console.log(error));
   }, [props.dataComponent]);
 
-  const handleInputChange = (
-    event: ChangeEvent<{}>,
-    newInput: string[],
-    reason: "input" | "reset" | "clear"
-  ) => {
+  const handleInputChange = (event: ChangeEvent<{}>, newInput: string[]) => {
     updateSelectedGroups(newInput);
+    setGroups(
+      groups.filter((group: TimelineGroup) => newInput.includes(group.title))
+    );
   };
 
   return isLoading ? (
@@ -55,7 +55,9 @@ export default function TimelineRenderer(props: TimelineRendererProps) {
         selectedGroups={selectedGroups}
       />
       <Timeline
-        groups={groups}
+        groups={groups.filter((group: TimelineGroup) =>
+          selectedGroups.includes(group.title)
+        )}
         items={items}
         defaultTimeStart={moment("2020.02.01 0:00:00")}
         defaultTimeEnd={moment("2020.02.03 0:00:00")}
