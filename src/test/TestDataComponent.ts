@@ -1,4 +1,4 @@
-import { MockAPIComponent, APIData } from "./Types";
+import { MockAPIComponent, APIData } from "../Types";
 
 export default class TestDataComponent implements MockAPIComponent {
   private testData = {

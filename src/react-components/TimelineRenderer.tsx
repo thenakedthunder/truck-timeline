@@ -1,8 +1,8 @@
-import { MockAPIComponent } from "./Types";
+import { MockAPIComponent } from "../Types";
 import React, { useState, useEffect, ChangeEvent } from "react";
 import Timeline, { TimelineGroup } from "react-calendar-timeline";
 import "react-calendar-timeline/lib/Timeline.css";
-import DataConvertHelper from "./DataConvertHelper";
+import DataConvertHelper from "../DataConvertHelper";
 import FilterBox from "./FilterBox";
 import moment from "moment";
 
@@ -42,26 +42,43 @@ export default function TimelineRenderer(props: TimelineRendererProps) {
     return groups.map((group: TimelineGroup) => group.title);
   };
 
+  const getGroupsToShow = (): TimelineGroup[] => {
+    return selectedGroups.length
+      ? groups.filter((group: TimelineGroup) =>
+          selectedGroups.includes(group.title)
+        )
+      : groups;
+  };
+
   return isLoading ? (
     <div>"Loading Data..."</div>
   ) : (
     <div>
-      <FilterBox
-        truckNames={mapTruckNames()}
-        onInputChange={handleInputChange}
-        selectedGroups={selectedGroups}
-      />
+      <div id="combo-box-container">
+        <FilterBox
+          truckNames={mapTruckNames()}
+          onInputChange={handleInputChange}
+          selectedGroups={selectedGroups}
+        />
+      </div>
+      <div id="helper-text">
+        <p>To zoom in and out, use CTRL + scroll</p>
+      </div>
       <Timeline
-        groups={
-          selectedGroups.length
-            ? groups.filter((group: TimelineGroup) =>
-                selectedGroups.includes(group.title)
-              )
-            : groups
-        }
+        groups={getGroupsToShow()}
         items={items}
         defaultTimeStart={moment("2020.02.01 0:00:00")}
         defaultTimeEnd={moment("2020.02.03 0:00:00")}
+        lineHeight={100}
+        // traditionalZoom={true} -> this does not work :()
+        timeSteps={{
+          minute: 5,
+          hour: 1,
+          day: 1,
+          month: 1,
+          year: 1
+        }}
+        maxZoom={30 * 86400 * 1000}
       />
     </div>
   );

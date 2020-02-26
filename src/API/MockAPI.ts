@@ -1,4 +1,4 @@
-import { MockAPIComponent, APIData } from "./Types";
+import { MockAPIComponent, APIData } from "../Types";
 import JsonDataProvider from "./JsonDataProvider.js";
 
 // ezt itthagytam, hogy látszódjon, ezzel is próbálkoztam. A codesandbox

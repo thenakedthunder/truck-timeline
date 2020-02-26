@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
@@ -13,18 +13,18 @@ export default function FilterBox(props: FilterBoxProps) {
     <Autocomplete
       multiple={true}
       value={props.selectedGroups}
-      id="combo-box-demo"
+      id="combo-box"
       options={props.truckNames}
       getOptionLabel={option => option}
       filterSelectedOptions
-      style={{ width: 300 }}
+      style={{ width: 400 }}
       onChange={props.onInputChange}
       renderInput={params => (
         <TextField
           {...params}
-          label="Combo box"
+          label="Truck filter"
           variant="outlined"
-          placeholder="Filter"
+          placeholder="Filter for as many trucks as you want"
         />
       )}
     />

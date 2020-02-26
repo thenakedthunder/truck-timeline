@@ -1,11 +1,11 @@
 import React from "react";
-import "./styles.css";
+import "../styles.css";
 
 import "react-calendar-timeline/lib/Timeline.css";
 import TimelineRenderer from "./TimelineRenderer";
 // teszteléshez:
-import TestDataComponent from "./TestDataComponent";
-import MockAPI from "./MockAPI";
+// import TestDataComponent from "./test/TestDataComponent";
+import MockAPI from "../API/MockAPI";
 
 export default function App() {
   // igazából ezt csak a tesztelés miatt csináltam így, hogy be lehessen injektálni

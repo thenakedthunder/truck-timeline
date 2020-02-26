@@ -1,5 +1,5 @@
-import DataConvertHelper from "./DataConvertHelper";
-import { Truck, Order } from "./Types";
+import DataConvertHelper from "../DataConvertHelper";
+import { Truck, Order } from "../Types";
 import moment from "moment";
 
 // test data

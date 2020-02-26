@@ -2,3 +2,13 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+#combo-box-container {
+  float: right;
+  display: block;
+  margin: 8px 0 32px 8px;
+}
+
+#helper-text {
+  vertical-align: bottom;
+}
