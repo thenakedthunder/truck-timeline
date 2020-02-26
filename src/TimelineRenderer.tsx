@@ -1,24 +1,20 @@
-import { DataComponentInterface } from "./Types";
+import { MockAPIComponent } from "./Types";
 import React, { useState, useEffect, ChangeEvent } from "react";
-import Timeline, { TimelineGroup, TimelineItem } from "react-calendar-timeline";
-// make sure you include the timeline stylesheet or the timeline will not be styled
+import Timeline, { TimelineGroup } from "react-calendar-timeline";
 import "react-calendar-timeline/lib/Timeline.css";
 import DataConvertHelper from "./DataConvertHelper";
 import FilterBox from "./FilterBox";
 import moment from "moment";
 
 type TimelineRendererProps = {
-  dataComponent: DataComponentInterface;
+  dataComponent: MockAPIComponent;
 };
 
 export default function TimelineRenderer(props: TimelineRendererProps) {
-  const [groups, setGroups]: TimelineGroup[] = useState([]);
-  const [items, setItems]: TimelineItem[] = useState([]);
+  const [groups, setGroups] = useState([]);
+  const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedGroups, updateSelectedGroups]: string[] = useState(
-    groups.map((group: TimelineGroup) => group.title)
-  );
-  // const [groupsToShow, updateGroupsToShow]: TimelineGroup[] = useState(groups)
+  const [selectedGroups, updateSelectedGroups] = useState([]);
 
   useEffect(() => {
     props.dataComponent
@@ -38,26 +34,31 @@ export default function TimelineRenderer(props: TimelineRendererProps) {
       .catch(error => console.log(error));
   }, [props.dataComponent]);
 
-  const handleInputChange = (event: ChangeEvent<{}>, newInput: string[]) => {
+  const handleInputChange = (_event: ChangeEvent<{}>, newInput: string[]) => {
     updateSelectedGroups(newInput);
-    setGroups(
-      groups.filter((group: TimelineGroup) => newInput.includes(group.title))
-    );
+  };
+
+  const mapTruckNames = (): string[] => {
+    return groups.map((group: TimelineGroup) => group.title);
   };
 
   return isLoading ? (
-    "Loading Data..."
+    <div>"Loading Data..."</div>
   ) : (
     <div>
       <FilterBox
-        truckNames={groups.map((group: TimelineGroup) => group.title)}
+        truckNames={mapTruckNames()}
         onInputChange={handleInputChange}
         selectedGroups={selectedGroups}
       />
       <Timeline
-        groups={groups.filter((group: TimelineGroup) =>
-          selectedGroups.includes(group.title)
-        )}
+        groups={
+          selectedGroups.length
+            ? groups.filter((group: TimelineGroup) =>
+                selectedGroups.includes(group.title)
+              )
+            : groups
+        }
         items={items}
         defaultTimeStart={moment("2020.02.01 0:00:00")}
         defaultTimeEnd={moment("2020.02.03 0:00:00")}

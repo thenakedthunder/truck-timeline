@@ -9,11 +9,11 @@ export type Order = {
   to: string;
 };
 
-export type ApiData = {
+export type APIData = {
   trucks: Truck[];
   orders: Order[];
 };
 
-export interface DataComponentInterface {
+export interface MockAPIComponent {
   getData: () => Promise<any>;
 }

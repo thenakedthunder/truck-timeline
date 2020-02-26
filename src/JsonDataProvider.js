@@ -1,4 +1,4 @@
-export default class APIMock {
+export default class JsonDataProvider {
   static callMockApiCall = () => {
     return {
       trucks: [

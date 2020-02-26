@@ -1,6 +1,6 @@
-import { DataComponentInterface, ApiData } from "./Types";
+import { MockAPIComponent, APIData } from "./Types";
 
-export default class TestDataComponent implements DataComponentInterface {
+export default class TestDataComponent implements MockAPIComponent {
   private testData = {
     trucks: [{ name: "truck1", assignedOrderId: ["order1", "order2"] }],
     orders: [
@@ -10,7 +10,7 @@ export default class TestDataComponent implements DataComponentInterface {
   };
 
   getData = () => {
-    return new Promise<ApiData>((resolve, reject) => {
+    return new Promise<APIData>(resolve => {
       resolve(this.testData);
     });
   };
